@@ -1,0 +1,104 @@
+---
+output: html_document
+---
+
+## Data
+
+This Markdown is used in conjunction with the dataset: "palmerpenguins", whcih includes two sub-datasets. Both datasets contain data for 344 penguins. There are 3 different species of penguins in this dataset, collected from 3 islands in the Palmer Archipelago, Antarctica. `species`, `bill_length_mm`,  `bill_depth_mm`,  `flipper_length_mm`, `body_mass_g`, `sex` and  `year` are the variables included.
+
+![](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png)
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(palmerpenguins) #install.packages("palmerpenguins")
+library(tidyverse)
+```
+
+<br> 
+
+## Single trait distribution
+
+### What is the lowest and highest bill lengths do penguins in this dataset have? 
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+summary(penguins)
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+penguins %>%
+  ggplot() +
+  geom_density(mapping = aes(x = bill_length_mm, fill=species), alpha=0.5)
+```
+
+*The lowest bill length is 32.10 mm and the highest bill length is 59.60 mm.*
+
+### Do different species have different bill lengths? How much do they overlap?
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+penguins %>%
+  ggplot() +
+  geom_histogram(mapping = aes(x = bill_length_mm, fill=species)) +
+  facet_wrap(~species, nrow=3)
+```
+
+*Bill length differs by species, `Gentoo` and `Chinstrap` having the largest and `Adelie` having the smallest.`Gentoo` and `Chinstrap` have very similar bill lengths, ranging from ~40 mm to ~60 mm.*
+
+<br> 
+
+## Relationship between multiple traits
+
+### What is the relationship between body mass and flipper length in penguins in this dataset?
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+penguins %>%
+  ggplot(mapping = aes(x = body_mass_g, y = flipper_length_mm, color = species)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+*Flipper length increases with body mass. There is a postive relationship between body mass and flipper length.*
+
+### Does this relationship differ between species?
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+penguins %>%
+  ggplot() +
+  geom_point(mapping = aes(x = body_mass_g, y = flipper_length_mm, color = species)) +
+  facet_wrap(~species, nrow=3)
+```
+
+*Flipper length displays a slight upward trend as body mass increases in all penguin species.*
+
+### Given the same body mass, which species of penguins tend to have the longest flippers?
+
+*Gentoo penguin species tend to have longer flippers on average.*
+
+<br>
+
+## Sexual dimorphism
+
+### What traits are sexually dimorphic in the penguins dataset? 
+```{r, echo=FALSE,message=FALSE, warning=FALSE}
+penguins %>%
+  ggplot(mapping = aes(x = bill_length_mm, y=bill_depth_mm, color=sex)) +
+  geom_point(size=1) +
+  facet_wrap(~species)
+
+#Use histrogram for one variable plotted with itself
+penguins %>%
+  ggplot(mapping = aes(x=flipper_length_mm, y=sex, color=sex)) +
+  geom_boxplot(outlier.alpha = 0, alpha=0) +
+  geom_jitter(width = 0, size=1) +
+  coord_flip() +
+  facet_wrap(~species)
+
+penguins %>%
+  ggplot(mapping = aes(x=body_mass_g, y=sex, color=sex)) +
+  geom_boxplot(outlier.alpha = 0, alpha=0) +
+  geom_jitter(width = 0, size=1) +
+  coord_flip() +
+  facet_wrap(~species)
+```
+
+*Bill length : bill depth, flipper length and body mass are all sexually dimorphic across species. Males have larger averages in all three indices across all three species.*
+
+
+
+
