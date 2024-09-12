@@ -2,6 +2,10 @@
 title: "Sexual Dimorphism"
 output: html_document
 ---
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(palmerpenguins) #install.packages("palmerpenguins")
+library(tidyverse)
+```
 ## Sexual dimorphism
 
 ### What traits are sexually dimorphic in the penguins dataset? 

@@ -2,6 +2,10 @@
 title: "Multiple Traits"
 output: html_document
 ---
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(palmerpenguins) #install.packages("palmerpenguins")
+library(tidyverse)
+```
 ## Relationship between multiple traits
 
 ### What is the relationship between body mass and flipper length in penguins in this dataset?
