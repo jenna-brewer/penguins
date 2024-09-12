@@ -1,0 +1,30 @@
+---
+title: "Single Trait"
+output: html_document
+---
+## Single trait distribution
+
+### What is the lowest and highest bill lengths do penguins in this dataset have? 
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+summary(penguins)
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+penguins %>%
+  ggplot() +
+  geom_density(mapping = aes(x = bill_length_mm, fill=species), alpha=0.5)
+```
+
+*The lowest bill length is 32.10 mm and the highest bill length is 59.60 mm.*
+
+### Do different species have different bill lengths? How much do they overlap?
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+penguins %>%
+  ggplot() +
+  geom_histogram(mapping = aes(x = bill_length_mm, fill=species)) +
+  facet_wrap(~species, nrow=3)
+```
+
+*Bill length differs by species, `Gentoo` and `Chinstrap` having the largest and `Adelie` having the smallest.`Gentoo` and `Chinstrap` have very similar bill lengths, ranging from ~40 mm to ~60 mm.*

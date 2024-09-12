@@ -1,0 +1,26 @@
+---
+output: html_document
+---
+
+## Home
+
+This Markdown is used in conjunction with the dataset: "palmerpenguins", whcih includes two sub-datasets. Both datasets contain data for 344 penguins. There are 3 different species of penguins in this dataset, collected from 3 islands in the Palmer Archipelago, Antarctica. `species`, `bill_length_mm`,  `bill_depth_mm`,  `flipper_length_mm`, `body_mass_g`, `sex` and  `year` are the variables included.
+
+![](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png)
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(palmerpenguins) #install.packages("palmerpenguins")
+library(tidyverse)
+```
+
+<br> 
+
+
+<br> 
+
+
+
+
+
+
+

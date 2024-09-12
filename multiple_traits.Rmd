@@ -1,0 +1,31 @@
+---
+title: "Multiple Traits"
+output: html_document
+---
+## Relationship between multiple traits
+
+### What is the relationship between body mass and flipper length in penguins in this dataset?
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+penguins %>%
+  ggplot(mapping = aes(x = body_mass_g, y = flipper_length_mm, color = species)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+*Flipper length increases with body mass. There is a postive relationship between body mass and flipper length.*
+
+### Does this relationship differ between species?
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+penguins %>%
+  ggplot() +
+  geom_point(mapping = aes(x = body_mass_g, y = flipper_length_mm, color = species)) +
+  facet_wrap(~species, nrow=3)
+```
+
+*Flipper length displays a slight upward trend as body mass increases in all penguin species.*
+
+### Given the same body mass, which species of penguins tend to have the longest flippers?
+
+*Gentoo penguin species tend to have longer flippers on average.*
+
+<br>
